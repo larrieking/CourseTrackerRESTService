@@ -1,6 +1,8 @@
 package com.example.coursetrackerrest.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,6 +10,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "COURSE")
+
 public class Course {
 
     @Id
@@ -26,4 +29,7 @@ public class Course {
 
     @Column(name = "DESCRIPTION")
     private String description;
+
+
+
 }

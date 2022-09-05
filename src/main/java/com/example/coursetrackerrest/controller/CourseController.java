@@ -4,6 +4,7 @@ package com.example.coursetrackerrest.controller;
 import com.example.coursetrackerrest.entity.Course;
 import com.example.coursetrackerrest.service.ServiceImpl.CourseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -32,6 +33,7 @@ String category) {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Course createCourse(@RequestBody Course course) {
         return courseService.createCourse(course);
     }

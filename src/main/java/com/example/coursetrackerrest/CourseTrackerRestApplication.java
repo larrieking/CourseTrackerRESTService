@@ -18,6 +18,7 @@ public class CourseTrackerRestApplication implements CommandLineRunner {
     private CourseServiceImpl courseService;
     @Override
     public void run(String... args) throws Exception {
+
         Course course = new Course();
         course.setDescription("A newly published book");
         course.setCategory("Java");
