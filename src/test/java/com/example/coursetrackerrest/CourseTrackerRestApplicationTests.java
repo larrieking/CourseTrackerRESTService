@@ -80,7 +80,7 @@ class CourseTrackerRestApplicationTests {
                 .andDo(print())
                 .andExpect(jsonPath("$.*", hasSize(5)))
                 .andExpect(jsonPath("$.id", greaterThan(0)))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk()).andReturn().getResponse();
 
 }
 
@@ -91,6 +91,21 @@ public void testInvalidId() throws Exception{
                 .andExpect(status().isNotFound());
 }
 
+@Test
+public void testDeleteCourse()throws Exception{
+        MockHttpServletResponse response = mockMvc.perform(post("/courses/")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectize()))
+                        .andDo(print())
+                                .andExpect(status().isCreated()).andReturn().getResponse();
+        Integer id = JsonPath.parse(response.getContentAsString()).read("$.id");
+        assertNotNull(id);
+        mockMvc.perform(delete("/courses/{id}", id))
+                .andExpect(status().isNoContent()).andReturn().getResponse();
+
+
+
+}
 
 public String objectize(){
         Course course = Course.builder()
