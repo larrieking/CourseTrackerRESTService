@@ -27,5 +27,7 @@ public class CourseTrackerRestApplication implements CommandLineRunner {
         courseService.createCourse(course);
         System.out.println("Success");
 
+
+
     }
 }

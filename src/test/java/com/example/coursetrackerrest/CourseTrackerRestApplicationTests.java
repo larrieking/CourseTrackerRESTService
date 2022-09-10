@@ -84,13 +84,19 @@ class CourseTrackerRestApplicationTests {
 
 }
 
-public String objectize(){
-        Course course = new Course();
+@Test
+public void testInvalidId() throws Exception{
+        mockMvc.perform(get("/courses/{id}", 1000))
+                .andDo(print())
+                .andExpect(status().isNotFound());
+}
 
-        course.setName("Rapid Spring Boot Application Development");
-        course.setCategory("Spring");
-        course.setRating(5);
-        course.setDescription("Rapid Spring Boot Application Development");
+
+public String objectize(){
+        Course course = Course.builder()
+                .name("Rapid Spring Boot Application Development").category("Spring")
+                .rating(5)
+                .description("Rapid Spring Boot Application Development").build();
         return gson.toJson(course);
     }
 
